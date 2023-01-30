@@ -1,0 +1,8 @@
+# .gitignore file
+/Data/
+/Other/
+/Output/Figures/
+/Output/Tables/
+/Output/Logs/
+/Sbatch*
+/slurm_job_checkpoint.sh

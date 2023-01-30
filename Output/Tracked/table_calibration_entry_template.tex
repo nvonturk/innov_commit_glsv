@@ -1,0 +1,28 @@
+\documentclass[9pt]{article}
+\usepackage{makecell}
+\usepackage{booktabs,caption}
+\begin{document}
+\begin{table}[ht]
+\begin{tabular}{cc|lcc}
+\hline
+\hline
+\multicolumn{2}{c|}{Parameter Estimates} & \multicolumn{3}{c}{Moments used in estimation} \\ 
+\hline
+Parameter & Value & Description & Model & Data \\
+\hline
+$\phi$ & phival & Productivity growth & tfpgrowthmodel \% & tfpgrowthtarget \% \\
+$\lambda$ & lambdaval & R\&D to GDP & rdgdpmodel \% & rdgdptarget \% \\
+$B$ & Bval & Markups & & \\
+$\eta$ & etaval & \hspace{0.4cm}Mean & meanmarkupmodel \% & meanmarkuptarget \% \\
+$\phi_e$ & phieval & \hspace{0.4cm}75th percentile & pct75markupmodel \% & pct75markuptarget \% \\
+$B_e$ & Beval & \hspace{0.4cm}90th percentile & pct90markupmodel \% & pct90markuptarget \% \\
+&  & \hspace{0.4cm}95th percentile & pct95markupmodel \% & pct95markuptarget \% \\
+&  & \hspace{0.4cm}99th percentile & pct99markupmodel \% & pct99markuptarget \% \\
+&  & FHK decomposition (entry) & FHKENTRYsh5ymodel \% &  FHKENTRYsh5ytarget \% \\
+& & Employment share & & \\
+& & \hspace{0.4cm} Less than or equal to 10 years & emp10model \% & emp10target \% \\ 
+& & \hspace{0.4cm} Less than or equal to 5 years & emp5model \% & emp5target \% \\ 
+\hline
+\end{tabular}
+\end{table}
+\end{document}

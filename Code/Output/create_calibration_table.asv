@@ -1,0 +1,69 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Filename: create_calibration_table.m
+% Author: Nicholas von Turkovich
+% Date: 06/17/2022
+% Note(s): 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+function [] = create_calibration_table(specification_table, specification_econparams, econparams)
+    
+    % Find the template and extract the moments with positive weight in the
+    % calibration
+    calibration_table = fileread("Output/Tracked/table_" + specification_table + "_template.tex");
+    calibration_colnames = econparams.calibration_file.Properties.VariableNames;
+    calibration_colnames = calibration_colnames(endsWith(calibration_colnames, "_w"));
+    idx_posweight = table2array(econparams.calibration_file(:,calibration_colnames)) > 0;
+    calibration_colnames = calibration_colnames(idx_posweight);
+
+    % Generate the names used to replace values in the template
+    moment_names = strrep(calibration_colnames, "_w", "");
+    calibration_names = strcat(moment_names, "_model");
+    target_names = strcat(moment_names, "_target");
+    table_calibration_names = strrep(calibration_names, "_", "");
+    table_target_names = strrep(target_names, "_", "");
+
+    % Replace the values in the table for moments/targets
+    for i = 1:length(moment_names)
+
+        calibration_value = table2array(econparams.calibration_file(:, moment_names(i)));
+        target_value = table2array(econparams.calibration_file(:, target_names(i)));
+
+        if moment_names(i) == "tfp_growth" || moment_names(i) == "rd_gdp"
+            calibration_table = strrep(calibration_table, table_calibration_names(i), num2str(calibration_value, "%2.2f"));
+            calibration_table = strrep(calibration_table, table_target_names(i), num2str(target_value, "%2.2f"));
+        else
+            calibration_table = strrep(calibration_table, table_calibration_names(i), num2str(calibration_value, "%2.1f"));
+            calibration_table = strrep(calibration_table, table_target_names(i), num2str(target_value, "%2.1f"));
+        end
+
+
+    end
+
+    % Repeat process for the internally calibrated parameters
+    param_names = ["B", "eta", "lambda", "phi"];
+
+    if specification_econparams == "calibration_entry"
+       param_names = [param_names, "B_e", "phi_e"]; 
+    end
+
+    param_values = round(table2array(econparams.calibration_file(:,param_names)), 3);
+
+    % Adjustment for reporting without R&D tau
+    B_idx = find(param_names == "B");
+    Btilde = econparams.B/((1-econparams.tau_rd)^(econparams.gamma))
+
+    param_names = strrep(param_names, "_", "");
+    table_param_names = strcat(param_names, "val");
+
+    for i = 1:length(param_names)
+       calibration_table = strrep(calibration_table, table_param_names(i), num2str(param_values(i), "%2.3f"));
+    end
+
+    fid = fopen("Output/Tables/table_" + specification_econparams + "_out.tex", 'w');
+    fprintf(fid, '%s', calibration_table);
+    fclose(fid);
+
+end
+
+
+

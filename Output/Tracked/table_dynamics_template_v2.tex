@@ -1,0 +1,40 @@
+\documentclass[9pt]{article}
+\usepackage{booktabs,caption}
+\begin{document}
+\begin{table}[!t]
+\captionsetup{justification=centering}
+\caption{\textbf{Comparing outcomes under time-consistent and commitment policies.}}
+\centering
+\begin{tabular}{l|cccc}
+\hline
+\hline
+ & [0,T] & [T,2T] & [2T,3T] & Long-run BGP \\ 
+\hline
+\textit{\textbf{Patent expiry rate}} & & & & \\
+\hspace{5mm} Optimizing at \{0,T\} & & & & \\
+\hspace{12mm} Time-consistent & etaconsT & etacons2T & etacons3T & etaconsBGP \\
+\hspace{12mm} Commitment & etadupT & etadup2T & etadup3T & etadupBGP\\
+\hspace{5mm} Optimizing at \{0,T,2T\} & & & & \\
+\hspace{12mm} Time-consistent & etatripconsT & etatripcons2T & etatripcons3T & etatripconsBGP\\
+\hspace{12mm} Commitment & etatripT & etatrip2T & etatrip3T & etatripBGP \\
+TFP growth (annual) & & & & \\
+\hspace{5mm} Optimizing at \{0,T\} & & & & \\
+\hspace{12mm} Time-consistent & prodgconsT & prodgcons2T & prodgcons3T & prodgconsBGP \\
+\hspace{12mm} Commitment & prodgdupT & prodgdup2T & prodgdup3T & prodgdupBGP\\
+\hspace{5mm} Optimizing at \{0,T,2T\} & & & & \\
+\hspace{12mm} Time-consistent & prodgtripconsT & prodgtripcons2T & prodgtripcons3T & prodgtripconsBGP\\
+\hspace{12mm} Commitment & prodgtripT & prodgtrip2T & prodgtrip3T & prodgtripBGP \\
+Average markup & & & & \\
+\hspace{5mm} Optimizing at \{0,T\} & & & & \\
+\hspace{12mm} Time-consistent & meanmarkupconsT & meanmarkupcons2T & meanmarkupcons3T & meanmarkupconsBGP \\
+\hspace{12mm} Commitment & meanmarkupdupT & meanmarkupdup2T & meanmarkupdup3T & meanmarkupdupBGP\\
+\hspace{5mm} Optimizing at \{0,T,2T\} & & & & \\
+\hspace{12mm} Time-consistent & meanmarkuptripconsT & meanmarkuptripcons2T & meanmarkuptripcons3T & meanmarkuptripconsBGP\\
+\hspace{12mm} Commitment & meanmarkuptripT & meanmarkuptrip2T & meanmarkuptrip3T & meanmarkuptripBGP \\
+\hline
+\end{tabular}
+\label{tab:policy_dynamics}
+\captionsetup{justification=justified}
+\caption*{This table characterizes the evolution of the patent expiry rate, TFP growth, and mean markup, under different assumptions about commitment and about the timing of patent expiry rate changes.  Each column shows the average of the indicated outcome over the time span indicated in the column heading.}
+\end{table}
+\end{document}

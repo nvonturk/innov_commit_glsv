@@ -1,0 +1,29 @@
+\documentclass[9pt]{article}
+\usepackage{booktabs,caption}
+\begin{document}
+\begin{table}[!t]
+\captionsetup{justification=centering}
+\caption{\textbf{Parameters and moments.}}
+\centering
+\begin{tabular}{cc|lcc}
+\hline
+\hline
+\multicolumn{2}{c|}{Parameter Estimates} & \multicolumn{3}{c}{Moments used in estimation} \\ 
+\hline
+Parameter & Value & Description & Model & Data \\
+\hline
+$\phi$ & phival & Productivity growth & tfpgrowthmodel \% & tfpgrowthtarget \% \\
+$\lambda$ & lambdaval & R\&D to GDP & rdgdpmodel \% & rdgdptarget \% \\
+$B$ & Bval & Markups & & \\
+$\eta$ & etaval & \hspace{0.4cm}Mean & meanmarkupmodel \% & meanmarkuptarget \% \\
+&  & \hspace{0.4cm}75th percentile & pct75markupmodel \% & pct75markuptarget \% \\
+&  & \hspace{0.4cm}90th percentile & pct90markupmodel \% & pct90markuptarget \% \\
+&  & \hspace{0.4cm}95th percentile & pct95markupmodel \% & pct95markuptarget \% \\
+&  & \hspace{0.4cm}99th percentile & pct99markupmodel \% & pct99markuptarget \% \\
+&  & FHK within & FHKWITHINadjsh5ymodel \% & FHKWITHINadjsh5ytarget \% \\
+\hline
+\end{tabular}
+\captionsetup{justification=justified}
+\label{tab:calibration}
+\end{table}
+\end{document}
